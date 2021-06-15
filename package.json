@@ -1,8 +1,10 @@
 {
   "name": "@benkeil/typescript-result",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest",
     "clean": "rm -rf dist",
