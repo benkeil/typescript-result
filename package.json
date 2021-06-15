@@ -1,7 +1,14 @@
 {
   "name": "@benkeil/typescript-result",
+  "description": "",
+  "keywords": [],
   "version": "0.0.2",
   "license": "MIT",
+  "author": "Ben Keil <benedikt.keil@trustedshops.de>",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
