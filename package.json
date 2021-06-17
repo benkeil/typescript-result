@@ -18,6 +18,9 @@
     "prebuild": "yarn run clean",
     "build": "tsc"
   },
+  "dependencies": {
+    "rxjs": "^7.1.0"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "jest": "^27.0.4",
