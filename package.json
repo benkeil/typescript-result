@@ -16,7 +16,9 @@
     "test": "jest",
     "clean": "rm -rf dist",
     "prebuild": "yarn run clean",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "yarn run build",
+    "postpublish": "git push --tags"
   },
   "dependencies": {
     "rxjs": "^7.1.0"
