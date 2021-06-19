@@ -2,7 +2,7 @@
   "name": "@benkeil/typescript-result",
   "description": "",
   "keywords": [],
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "author": "Ben Keil <benedikt.keil@trustedshops.de>",
   "main": "dist/index.js",
