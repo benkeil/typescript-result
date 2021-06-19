@@ -39,9 +39,17 @@ export default abstract class Result<I> {
     return this.ofSuccess(undefined);
   }
 
-  static from<T>(func: (...args: any[]) => T): Result<T> {
+  static wrap<T>(func: (...args: any[]) => T): Result<T> {
     try {
       return new SuccessResult(func());
+    } catch (error) {
+      return new FailureResult(error);
+    }
+  }
+
+  static async wrapAsync<T>(func: (...args: any[]) => Promise<T>): Promise<Result<T>> {
+    try {
+      return new SuccessResult(await func());
     } catch (error) {
       return new FailureResult(error);
     }

@@ -22,6 +22,45 @@ describe('Result', () => {
     expect(Result.ofNull().get()).toBe(null);
     expect(Result.ofUndefined().get()).toBe(undefined);
   });
+
+  describe('wrap', () => {
+    test('success', () => {
+      const result = Result.wrap(() => {
+        return true;
+      });
+      expect(result.get()).toBe(true);
+    });
+    test('failure', () => {
+      const result = Result.wrap(() => {
+        throw new Error();
+      });
+      expect(() => result.get()).toThrow();
+    });
+  });
+
+  describe('wrapAsync', () => {
+    test('success', async () => {
+      const result = await Result.wrapAsync(async () => {
+        return 'hello world';
+      });
+      const mapped = result.matches({
+        success: () => 'true',
+        failure: () => 'false',
+      });
+      expect(mapped).toBe('true');
+    });
+    test('failure', async () => {
+      const result = await Result.wrapAsync(async () => {
+        throw new Error();
+      });
+      const mapped = result.matches({
+        success: () => 'true',
+        failure: () => 'false',
+      });
+      expect(mapped).toBe('false');
+    });
+  });
+
   test('fromOption', () => {
     const success: Success<number> = {
       kind: 'success',
@@ -41,7 +80,7 @@ describe('Result', () => {
   });
 
   test('success', () => {
-    expect(Result.from(() => doThrow(false)).get()).toBe(0);
+    expect(Result.wrap(() => doThrow(false)).get()).toBe(0);
     const result = Result.ofSuccess(1);
     expect(result.get()).toBe(1);
     // is
@@ -80,7 +119,7 @@ describe('Result', () => {
   });
 
   test('failure', () => {
-    expect(() => Result.from(() => doThrow(true)).get()).toThrowError();
+    expect(() => Result.wrap(() => doThrow(true)).get()).toThrowError();
     const error = new Error('test error');
     const result = Result.ofFailure(error);
     expect(() => result.get()).toThrow();
