@@ -1,5 +1,5 @@
-import Result from '../src/Result';
-import { Failure, Success } from '../src/Option';
+import Result from './Result';
+import { Failure, Success } from './Option';
 
 const doThrow = (value: boolean): number => {
   if (value) {
